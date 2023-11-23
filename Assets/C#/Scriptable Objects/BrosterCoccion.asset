@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6f42c0cf29bfe40894a3f5f2fddd14, type: 3}
+  m_Name: BrosterCoccion
+  m_EditorClassIdentifier: 
+  colorCrudo: {r: 0.9150943, g: 0.5481933, b: 0.660361, a: 0}
+  colorCocido: {r: 0.8490566, g: 0.6937149, b: 0.1802243, a: 0}
+  colorQuemado: {r: 0, g: 0, b: 0, a: 0}
+  tiempoCoccionCocido: 0
+  tiempoCoccionQuemado: 0
