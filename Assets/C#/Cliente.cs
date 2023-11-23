@@ -1,52 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 public class Cliente : MonoBehaviour
 {
-    private int paciencia;
-    private int puntaje;
-    private int estrellas;
+    public List<TipoComida> pedido;
+    public float paciencia;
 
-    void Start()
+    // Definir evento para perder paciencia
+    public event Action OnPacienciaAgotada;
+
+    void VerificarPaciencia()
     {
-        paciencia = 100;
-        puntaje = 50;
-        estrellas = 5;
-
-        RealizarPedido();
-    }
-
-    void RealizarPedido()
-    {
-        int cantidadPedido = Random.Range(1, 5);
-        Debug.Log("Cliente ha hecho un pedido de " + cantidadPedido + " artículos.");
-
-        while (cantidadPedido > 0)
+        // Lógica para verificar la paciencia del cliente
+        if (paciencia <= 0)
         {
-            System.Threading.Thread.Sleep(1000);
-            Debug.Log("Preparando artículo...");
-
-            paciencia--;
-
-            if (paciencia == 0)
-            {
-                Debug.Log("¡Cliente se fue sin su pedido!");
-                estrellas--;
-                break;
-            }
-
-            cantidadPedido--;
+            OnPacienciaAgotada?.Invoke();
         }
-
-        if (paciencia > 0)
-        {
-            Debug.Log("¡Pedido entregado con éxito!");
-            puntaje -= paciencia;
-        }
-
-        Debug.Log("Puntaje final del cliente: " + puntaje);
-        Debug.Log("Estrellas del cliente: " + estrellas);
     }
 }
 

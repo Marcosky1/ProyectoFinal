@@ -1,59 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
+
 
 public class Ronda : MonoBehaviour
 {
-    private int numeroRonda;
-    private float pacienciaCliente;
-    private Queue<Cliente> clientes;
-    private Jugador jugador;
+    public int numeroRonda;
+    public float pacienciaCliente;
+    public Queue<Cliente> clientes;
+    public Jugador jugador;
 
-    void Start()
+    // Definir evento para finalizar ronda
+    public event Action OnRondaFinalizada;
+
+    void IniciarRonda()
     {
-        IniciarRonda();
+        // Inicializar clientes y otros elementos de la ronda
     }
 
-    void Update()
+    void FinalizarRonda()
     {
-        VerificarPedidoContinuamente();
+        // Manejar la lógica de finalización de la ronda
+        OnRondaFinalizada?.Invoke();
     }
 
-    private void IniciarRonda()
+    void GenerarCliente()
     {
-        for (int i = 0; i < numeroRonda + 5; i++)
-        {
-            GenerarCliente();
-        }
-        Debug.Log("Iniciando Ronda " + numeroRonda);
+        // Lógica para generar un nuevo cliente
     }
 
-    private void VerificarPedidoContinuamente()
+    void VerificarPedido()
     {
-        if (clientes.Count > 0)
-        {
-            Cliente clienteActual = clientes.Peek();
-
-            if (jugador.ComidaServida != null && clienteActual.Pedido == jugador.ComidaServida.tag)
-            {
-                Debug.Log("Pedido correcto en Ronda " + numeroRonda + ": " + clienteActual.Pedido);
-                jugador.AgregarPuntos(10);
-                clientes.Dequeue();
-            }
-            
-            jugador.ComidaServida = null;
-        }
-    }
-
-    private void GenerarCliente()
-    {
-        Cliente nuevoCliente = new Cliente(pacienciaCliente);
-        clientes.Enqueue(nuevoCliente);
-        Debug.Log("Cliente encolado en Ronda " + numeroRonda + ": Paciencia " + pacienciaCliente);
-    }
-
-    private void FinalizarRonda()
-    {
-        Debug.Log("Finalizando Ronda " + numeroRonda);
+        // Lógica para verificar si el pedido del cliente es correcto
     }
 }
