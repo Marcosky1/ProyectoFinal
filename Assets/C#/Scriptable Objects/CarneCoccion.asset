@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6f42c0cf29bfe40894a3f5f2fddd14, type: 3}
   m_Name: CarneCoccion
   m_EditorClassIdentifier: 
-  colorCrudo: {r: 0.7830189, g: 0.31394625, b: 0.44332397, a: 0}
-  colorCocido: {r: 0.6792453, g: 0.14417945, b: 0.14417945, a: 0}
-  colorQuemado: {r: 0, g: 0, b: 0, a: 0}
+  colorCrudo: {r: 0.7830189, g: 0.31394625, b: 0.44332397, a: 1}
+  colorCocido: {r: 0.6792453, g: 0.14417945, b: 0.14417945, a: 1}
+  colorQuemado: {r: 0, g: 0, b: 0, a: 1}
   tiempoCoccionCocido: 0
   tiempoCoccionQuemado: 0

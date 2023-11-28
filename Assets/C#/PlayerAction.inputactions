@@ -1,0 +1,74 @@
+{
+    "name": "PlayerAction",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "16023256-f609-44a6-9659-334e21228a95",
+            "actions": [
+                {
+                    "name": "ParrillaQ",
+                    "type": "Button",
+                    "id": "05120e86-18f6-4664-ab1d-c264106f5793",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FreidoraW",
+                    "type": "Button",
+                    "id": "b67ba86d-d73c-4498-bf8d-e94612e500cc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FreidoraE",
+                    "type": "Button",
+                    "id": "c48b5363-a1e7-462e-bb88-6a3fc8402641",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c5715879-d591-4e75-8477-287278dac781",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ParrillaQ",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d86d8ee-e836-4d5d-b3b8-8907d1137b63",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FreidoraW",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8ee3c4a-cc9f-4930-9d57-3f190e4c233e",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FreidoraE",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
