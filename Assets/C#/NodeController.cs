@@ -9,8 +9,6 @@ public class NodeController : MonoBehaviour
 
     public NodeController nextNode;
 
-    public float energyCost = 10.0f;
-
     public void AddNode(NodeController newNode)
     {
         if (headNode == null)
@@ -36,12 +34,6 @@ public class NodeController : MonoBehaviour
 
         while (currentNode != null)
         {
-            if (energy >= currentNode.energyCost)
-            {
-                reachableNodes[count] = currentNode;
-                count++;
-            }
-
             currentNode = currentNode.nextNode;
         }
 
@@ -52,7 +44,6 @@ public class NodeController : MonoBehaviour
         else
         {
             int index = Random.Range(0, count);
-            energy -= reachableNodes[index].energyCost;
             return reachableNodes[index];
         }
     }

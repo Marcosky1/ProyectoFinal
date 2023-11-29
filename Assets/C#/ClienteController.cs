@@ -18,18 +18,19 @@ public class ClienteController : MonoBehaviour
         {
             MoveToNextNode();
         }
+
+        anim.SetBool("IsWalking", true);
     }
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, nodos[currentNodeIndex].transform.position) < 0.1f)
+        if (Vector3.Distance(new Vector3(transform.position.x,0,transform.position.z), nodos[currentNodeIndex].transform.position) < 0.1f)
         {
-            anim.SetBool("IsWalking", false);
 
             // Mantener la posición Y constante
             Vector3 newPosition = transform.position;
-            newPosition.y = -76.0f;
             transform.position = newPosition;
+
 
             MoveToNextNode();
         }
@@ -46,14 +47,12 @@ public class ClienteController : MonoBehaviour
 
         Vector3 targetPosition = nodos[currentNodeIndex].transform.position;
 
-        anim.SetBool("IsWalking", true);
-
         StartCoroutine(MoveTowardsTarget(targetPosition));
 
         Debug.Log(currentNodeIndex);
     }
 
-    System.Collections.IEnumerator MoveTowardsTarget(Vector3 targetPosition)
+    IEnumerator MoveTowardsTarget(Vector3 targetPosition)
     {
         while (transform.position != targetPosition)
         {
