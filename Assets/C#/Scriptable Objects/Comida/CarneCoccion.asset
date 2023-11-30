@@ -15,5 +15,5 @@ MonoBehaviour:
   colorCrudo: {r: 0.7830189, g: 0.31394625, b: 0.44332397, a: 1}
   colorCocido: {r: 0.6792453, g: 0.14417945, b: 0.14417945, a: 1}
   colorQuemado: {r: 0, g: 0, b: 0, a: 1}
-  tiempoCoccionCocido: 0
-  tiempoCoccionQuemado: 0
+  tiempoCoccionCocido: 10
+  tiempoCoccionQuemado: 20

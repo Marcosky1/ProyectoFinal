@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NodeController : MonoBehaviour
 {
+    public Vector3 Posicion { get { return transform.position; } }
 
     public NodeController headNode;
 

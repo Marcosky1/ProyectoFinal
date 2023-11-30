@@ -30,8 +30,6 @@ public class ClienteController : MonoBehaviour
             // Mantener la posición Y constante
             Vector3 newPosition = transform.position;
             transform.position = newPosition;
-
-
             MoveToNextNode();
         }
     }
