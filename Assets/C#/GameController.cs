@@ -1,22 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     public GameData gameData;
     public UIManager uiManager;
+    public Image estrellasImage; // Asegúrate de asignar esto en el Inspector
 
     void Update()
     {
-        if (gameData.victoria)
-        {
-            uiManager.MostrarVictoria();
-        }
-        else if (PerdioJuego())
-        {
-            uiManager.MostrarDerrota();
-        }
+        
     }
 
     bool PerdioJuego()
@@ -34,5 +27,16 @@ public class GameController : MonoBehaviour
         return gameData.rondaActual >= 20;
     }
 
+    void ActualizarEstrellas()
+    {
+        // Restar 0.2 al fillAmount
+        estrellasImage.fillAmount -= 0.2f;
+
+        // Verificar si el fillAmount llegó a cero
+        if (estrellasImage.fillAmount <= 0)
+        {
+            uiManager.MostrarDerrota();
+        }
+    }
 }
 

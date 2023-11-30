@@ -3,19 +3,18 @@ using UnityEngine.UI;
 
 public class CrearElementos : MonoBehaviour
 {
-    public Button botonCrearElemento; // Botón para crear elementos
-    public GameObject[] nodosPrefabs; // Array de Prefabs de nodos
-    public GameObject hamburguesaPrefab; // Prefab de la hamburguesa
+    public Button botonCrearElemento;
+    public GameObject[] nodosPrefabs; 
+    public GameObject hamburguesaPrefab; 
 
-    private Nodo cabezaLista; // Cabeza de la lista
+    private Nodo cabezaLista; 
     private Nodo nodoActual; // Nodo actual en la lista
     private int elementosCreados = 0;
 
-    // Nodo que representa un elemento en la lista
     private class Nodo
     {
         public bool ocupado;
-        public Vector3 posicion; // Posición del nodo
+        public Vector3 posicion; 
         public Nodo siguiente;
 
         public Nodo(Vector3 pos)
@@ -28,15 +27,14 @@ public class CrearElementos : MonoBehaviour
 
     void Start()
     {
-        // Configuración del botón
         botonCrearElemento.onClick.AddListener(CrearElemento);
 
-        // Configuración de los nodos
         CrearNodos();
 
-        // Inicializar nodoActual al inicio
         nodoActual = cabezaLista;
     }
+
+
 
     void CrearNodos()
     {
@@ -86,14 +84,11 @@ public class CrearElementos : MonoBehaviour
                     // Aumentar el contador de elementos creados
                     elementosCreados++;
 
-                    // Avanzar al siguiente nodo
                     nodoActual = nodoActual.siguiente;
 
-                    // Verificar si se ha alcanzado el límite
                     if (elementosCreados >= nodosPrefabs.Length)
                     {
                         Debug.Log("Se han creado todos los elementos.");
-                        // Puedes desactivar el botón u realizar otras acciones cuando se alcance el límite
                     }
 
                     return;
@@ -101,7 +96,7 @@ public class CrearElementos : MonoBehaviour
 
                 nodoActual = nodoActual.siguiente; // Avanza al siguiente nodo
 
-            } while (nodoActual != nodoInicio); // Salir del bucle si volvemos al nodo de inicio
+            } while (nodoActual != nodoInicio); 
 
             Debug.Log("No hay nodos disponibles para crear elementos.");
         }

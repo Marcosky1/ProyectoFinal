@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
 
     public void ActualizarPuntos(int puntos)
     {
-        puntosText.text = "Puntos: " + puntos;
+        puntosText.text = "Dinero: s/" + puntos;
     }
 
     public void MostrarVictoria()
