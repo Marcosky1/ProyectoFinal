@@ -1,0 +1,3 @@
+-separar los objetos del ecenario
+
+- ver como usar un raycast con la camara perspertiva y que te siga el objeto que agas click
