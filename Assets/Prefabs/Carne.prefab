@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 117714475235166603}
   - component: {fileID: 8107155896395262589}
   - component: {fileID: -8568796825497669170}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Carne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 256273bfa432a3847b67a297689fb7ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,4 +98,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   datosCoccion: {fileID: 11400000, guid: 98eeb808f8f78bd4ba6ec5991335cf44, type: 2}
-  barraDeCoccion: {fileID: 4148793083060621716, guid: df9aa3a8f19c1b146a15d0ed3f1ef7ea, type: 3}
+  tiempoVida: 0

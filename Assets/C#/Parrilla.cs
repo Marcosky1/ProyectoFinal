@@ -1,68 +1,52 @@
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
+using System;
 
 public class Parrilla : MonoBehaviour
 {
-    public DatosCoccion datosCoccion;
-    public Image barraDeCoccion;
-
-    private float tiempoCoccion = 0f;
-
-    void Start()
-    {
-        IniciarCoccion();
-    }
+    public DatosCoccion datosCoccion; 
+    public float tiempoVida = 30f; 
+    private float tiempoCoccionActual = 0f;
 
     void Update()
     {
-        tiempoCoccion += Time.deltaTime;
+        tiempoVida -= Time.deltaTime;
 
-        ActualizarBarraDeCoccion();
+        tiempoCoccionActual += Time.deltaTime;
 
-        CambiarColorSegunCoccion();
+        ActualizarColorYEstado();
 
-        VerificarCoccionCompleta();
-    }
-
-    void IniciarCoccion()
-    {
-        tiempoCoccion = 0f;
-
-        barraDeCoccion.fillAmount = 0f;
-    }
-
-    void ActualizarBarraDeCoccion()
-    {
-        float progreso = tiempoCoccion / datosCoccion.tiempoCoccionQuemado;
-
-        progreso = Mathf.Clamp01(progreso);
-
-        barraDeCoccion.fillAmount = progreso;
-    }
-
-    void CambiarColorSegunCoccion()
-    {
-        Color colorCoccion = Color.Lerp(datosCoccion.colorCrudo, datosCoccion.colorQuemado, barraDeCoccion.fillAmount);
-
-        barraDeCoccion.color = colorCoccion;
-    }
-
-    void VerificarCoccionCompleta()
-    {
-        if (barraDeCoccion.fillAmount == 1f || tiempoCoccion > (datosCoccion.tiempoCoccionQuemado + 10f))
+        if (tiempoVida <= 0f)
         {
-            if (barraDeCoccion.fillAmount == 1f)
-            {
-                Debug.Log("La carne está completamente cocida.");
-            }
-            else
-            {
-                Debug.Log("La carne se ha quemado.");
-            }
             Destroy(gameObject);
         }
     }
+
+    void ActualizarColorYEstado()
+    {
+        if (tiempoCoccionActual < datosCoccion.tiempoCoccionCocido)
+        {
+            // Etapa 1: Carne cruda (primer color)
+            datosCoccion.ChangeEmissionColor(DatosCoccion.EtapasCoccion.Crudo);
+        }
+        else if (tiempoCoccionActual < datosCoccion.tiempoCoccionQuemado)
+        {
+            // Etapa 2: Carne cocida (sin color)
+            datosCoccion.ChangeEmissionColor(DatosCoccion.EtapasCoccion.Cocido);
+        }
+        else
+        {
+            // Etapa 3: Carne quemada (segundo color)
+            datosCoccion.ChangeEmissionColor(DatosCoccion.EtapasCoccion.Quemado);
+
+            if (tiempoVida <= -5f)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 }
+
 
 
 
