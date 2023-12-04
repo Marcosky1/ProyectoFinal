@@ -14,8 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiempoCoccionCocido: 10
   tiempoCoccionQuemado: 20
-  ColorCoccion: {fileID: 2100000, guid: 256273bfa432a3847b67a297689fb7ac, type: 2}
-  Color:
-  - {r: 1, g: 0.5424528, b: 0.5424528, a: 0}
-  - {r: 0, g: 0, b: 0, a: 1}
-  - {r: 1, g: 1, b: 1, a: 0}
+  colorCrudo: {r: 0.990566, g: 0.7242346, b: 0.7242346, a: 0}
+  colorQuemado: {r: 0, g: 0, b: 0, a: 0}

@@ -6,21 +6,22 @@ public class DatosCoccion : ScriptableObject
     public float tiempoCoccionCocido;
     public float tiempoCoccionQuemado;
 
-    [SerializeField] private Material ColorCoccion;
-    [SerializeField] private Color[] Color;
+    [SerializeField] private Color colorCrudo;
+    [SerializeField] private Color colorQuemado;
 
-    public void ChangeEmissionColor(EtapasCoccion typeChange)
+    public Color ObtenerColor(EtapasCoccion etapa)
     {
-        switch (typeChange)
+        switch (etapa)
         {
             case EtapasCoccion.Crudo:
-                ColorCoccion.SetColor("_emissionColor", Color[0]);
-                break;
+                return colorCrudo;
             case EtapasCoccion.Quemado:
-                ColorCoccion.SetColor("_emissionColor", Color[1]);
-                break;
+                return colorQuemado;
+            default:
+                return Color.white; 
         }
     }
+
     public enum EtapasCoccion
     {
         Crudo, Cocido, Quemado

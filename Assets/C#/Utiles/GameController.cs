@@ -5,7 +5,7 @@ public class GameController : MonoBehaviour
 {
     public GameData gameData;
     public UIManager uiManager;
-    public Image estrellasImage; // Asegúrate de asignar esto en el Inspector
+    public Image estrellasImage; 
 
     void Update()
     {
