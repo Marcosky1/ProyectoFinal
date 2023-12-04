@@ -8,7 +8,7 @@ public class Ronda : MonoBehaviour
     public int numeroRonda;
     public float pacienciaCliente;
     public Queue<Cliente> clientes;
-    public Jugador jugador;
+
 
     // Definir evento para finalizar ronda
     public event Action OnRondaFinalizada;

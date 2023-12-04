@@ -30,7 +30,7 @@ public class NodeController : MonoBehaviour
     public NodeController GetNextNode(float energy)
     {
         NodeController currentNode = headNode;
-        NodeController[] reachableNodes = new NodeController[100];
+        NodeController[] reachableNodes = new NodeController[6];
         int count = 0;
 
         while (currentNode != null)
