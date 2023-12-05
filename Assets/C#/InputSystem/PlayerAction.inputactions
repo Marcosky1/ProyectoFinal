@@ -11,7 +11,7 @@
                     "id": "05120e86-18f6-4664-ab1d-c264106f5793",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1)",
                     "initialStateCheck": false
                 },
                 {
@@ -20,7 +20,7 @@
                     "id": "b67ba86d-d73c-4498-bf8d-e94612e500cc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1)",
                     "initialStateCheck": false
                 },
                 {
@@ -29,7 +29,7 @@
                     "id": "c48b5363-a1e7-462e-bb88-6a3fc8402641",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1)",
                     "initialStateCheck": false
                 }
             ],
@@ -38,6 +38,17 @@
                     "name": "",
                     "id": "c5715879-d591-4e75-8477-287278dac781",
                     "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ParrillaQ",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b69d2d84-e86c-49de-891f-596a16c5e259",
+                    "path": "<HID::ZhiXu GYB G801BT>/button4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -58,8 +69,30 @@
                 },
                 {
                     "name": "",
+                    "id": "0f589483-fd37-4a9f-84fb-7b1b0477e59e",
+                    "path": "<HID::ZhiXu GYB G801BT>/button5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FreidoraW",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "c8ee3c4a-cc9f-4930-9d57-3f190e4c233e",
                     "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FreidoraE",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8bf304e-b63e-40a9-999d-4a1b51ba0be0",
+                    "path": "<HID::ZhiXu GYB G801BT>/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

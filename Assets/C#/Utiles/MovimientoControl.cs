@@ -16,7 +16,6 @@ public class MovimientoControl : MonoBehaviour
     {
         tiempoInicioMovimiento = Time.time;
         transform.position = nodos[indiceNodoActual].position;
-        anim.SetBool("IsWalking", true);
     }
 
     void Update()

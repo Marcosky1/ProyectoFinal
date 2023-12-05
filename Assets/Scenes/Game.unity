@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.004067328, g: 0.00022238269, b: 0.00000005613946, a: 1}
+  m_IndirectSpecularColor: {r: 0.0040673385, g: 0.00022238327, b: 0.00000005613946, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7083,8 +7083,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1037645443}
-  - component: {fileID: 1037645442}
   - component: {fileID: 1037645444}
+  - component: {fileID: 1037645445}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -7092,26 +7092,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1037645442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1037645441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f5f3724388d60e4bb94b33ff8e16688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rondas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  rondaActual: 0
-  puntaje: 0
 --- !u!4 &1037645443
 Transform:
   m_ObjectHideFlags: 0
@@ -7126,6 +7106,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1621629963}
+  - {fileID: 2041428857}
   - {fileID: 1625107684}
   - {fileID: 283929350}
   - {fileID: 1213863333}
@@ -7146,6 +7127,84 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: 944cff9896b0f6b448b739d77bf55d84, type: 2}
   uiManager: {fileID: 1621629962}
   estrellasImage: {fileID: 2002594862}
+--- !u!114 &1037645445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037645441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f2333ff143776e14daa48d0b1f8f99ab, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2041428856}
+        m_TargetAssemblyTypeName: ControladorParticulas, Assembly-CSharp
+        m_MethodName: OnParrillaAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 05120e86-18f6-4664-ab1d-c264106f5793
+    m_ActionName: Gameplay/ParrillaQ[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2041428856}
+        m_TargetAssemblyTypeName: ControladorParticulas, Assembly-CSharp
+        m_MethodName: OnFreidoraAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b67ba86d-d73c-4498-bf8d-e94612e500cc
+    m_ActionName: Gameplay/FreidoraW[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2041428856}
+        m_TargetAssemblyTypeName: ControladorParticulas, Assembly-CSharp
+        m_MethodName: OnOtroAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c48b5363-a1e7-462e-bb88-6a3fc8402641
+    m_ActionName: Gameplay/FreidoraE[/Keyboard/e]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1037914172
 GameObject:
   m_ObjectHideFlags: 0
@@ -13130,7 +13189,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1614400731}
   - component: {fileID: 1614400730}
-  - component: {fileID: 1614400732}
   m_Layer: 0
   m_Name: escenario
   m_TagString: Untagged
@@ -13208,20 +13266,6 @@ Transform:
   - {fileID: 739348653}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 14, y: 20.7, z: -0.2}
---- !u!114 &1614400732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614400729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 353cc349578957c41b2afbaa991b92aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  botonCarne: {fileID: 0}
-  botonPan: {fileID: 0}
 --- !u!1 &1621629961
 GameObject:
   m_ObjectHideFlags: 0
@@ -19136,6 +19180,53 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000045776367, y: -8.939964}
   m_SizeDelta: {x: 132.1503, y: 86.6592}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2041428855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2041428857}
+  - component: {fileID: 2041428856}
+  m_Layer: 0
+  m_Name: ControlInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2041428856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041428855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843b29db261525c4788f29e405c1026d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particulasParrilla: {fileID: 1625107683}
+  particulasFreidora: {fileID: 1213863331}
+  particulasOtro: {fileID: 283929348}
+--- !u!4 &2041428857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041428855}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.1185455, y: -5.0910187, z: -113.828}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1037645443}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2069760361
 GameObject:
   m_ObjectHideFlags: 0
