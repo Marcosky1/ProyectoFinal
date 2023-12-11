@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Comida : MonoBehaviour
 {
-    public TipoComida tipo;
     public float tiempoCoccion;
 
     private bool estaCocida = false;

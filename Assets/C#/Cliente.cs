@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class Cliente : MonoBehaviour
 {
-    public List<TipoComida> pedido;
     public float paciencia;
 
     // Definir evento para perder paciencia

@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class MovimientoControl : MonoBehaviour
 {
-    public Transform[] nodos;  // Los nodos que forman la ruta
-    public float velocidad = 5f;  
-    public float aceleracion = 2f;  
+    public NodoLista primerNodo;  
+    public float velocidad = 5f;
+    public float aceleracion = 2f;
+    public float smoothTime = 0.3f;  
 
-    private int indiceNodoActual = 0;  // Índice del nodo actual
-    private float tiempoInicioMovimiento; 
-    private float distanciaRecorrida;  // Distancia recorrida en el movimiento MRUV
+    private NodoLista nodoActual;  
+    private float tiempoInicioMovimiento;
+    private Vector3 velocidadSmoothDamp;
 
     private Animator anim;
 
     void Start()
     {
         tiempoInicioMovimiento = Time.time;
-        transform.position = nodos[indiceNodoActual].position;
+        transform.position = primerNodo.position;
+        nodoActual = primerNodo;
     }
 
     void Update()
@@ -25,18 +27,29 @@ public class MovimientoControl : MonoBehaviour
 
     void MoverNodo()
     {
-        // Calcular la distancia recorrida en el movimiento MRUV
-        distanciaRecorrida = velocidad * (Time.time - tiempoInicioMovimiento) +
-                            0.5f * aceleracion * Mathf.Pow(Time.time - tiempoInicioMovimiento, 2);
+        float distanciaRecorrida = velocidad * (Time.time - tiempoInicioMovimiento) + 0.5f * aceleracion * Mathf.Pow(Time.time - tiempoInicioMovimiento, 2);
 
-        // Mover hacia el siguiente nodo
-        transform.position = Vector3.MoveTowards(transform.position, nodos[indiceNodoActual].position, distanciaRecorrida * Time.deltaTime);
+        // Calcular la posición objetivo del nodo
+        Vector3 posicionObjetivo = nodoActual.position;
 
-        // Si llegamos al nodo, avanzamos al siguiente
-        if (transform.position == nodos[indiceNodoActual].position)
+        Vector3 nuevaPosicion = Vector3.SmoothDamp(transform.position, posicionObjetivo, ref velocidadSmoothDamp, smoothTime, Mathf.Infinity, Time.deltaTime);
+        transform.position = nuevaPosicion;
+
+        if (Vector3.Distance(transform.position, posicionObjetivo) < 0.01f)
         {
             tiempoInicioMovimiento = Time.time;
-            indiceNodoActual = (indiceNodoActual + 1) % nodos.Length;
+            nodoActual = nodoActual.siguienteNodo;
+
+            if (nodoActual == null)
+            {
+                nodoActual = primerNodo;
+            }
         }
     }
+}
+
+public class NodoLista
+{
+    public Vector3 position;   
+    public NodoLista siguienteNodo;  
 }
