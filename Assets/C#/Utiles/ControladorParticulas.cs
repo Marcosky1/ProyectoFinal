@@ -14,7 +14,7 @@ public class ControladorParticulas : MonoBehaviour
 
     public void OnParrillaAction(InputAction.CallbackContext ctx)
     {
-        ToggleParticulas(particulasParrilla);      
+        ToggleParticulas(particulasParrilla);
     }
 
     public void OnFreidoraAction(InputAction.CallbackContext ctx)

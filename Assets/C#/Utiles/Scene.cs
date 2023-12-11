@@ -20,5 +20,10 @@ public class Scene : MonoBehaviour
     {
         SceneManager.LoadScene("PantallaInicial");
     }
+
+    public void IrAlPuntaje()
+    {
+        SceneManager.LoadScene("Puntaje");
+    }
 }
 

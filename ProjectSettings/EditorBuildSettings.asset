@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Win.unity
     guid: 8cd02876d3023b5488cfd35b574dd186
+  - enabled: 1
+    path: Assets/Scenes/Puntaje.unity
+    guid: f5d0d0106d460724fa26231033ae45de
   m_configObjects: {}

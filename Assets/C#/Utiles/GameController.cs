@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
         // Restar 0.2 al fillAmount
         estrellasImage.fillAmount -= 0.2f;
 
-        // Verificar si el fillAmount llegó a cero
+        // Verificar si el fillAmount llego a cero
         if (estrellasImage.fillAmount <= 0)
         {
             uiManager.MostrarDerrota();
