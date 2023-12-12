@@ -62,13 +62,11 @@ public class MovimientoControl : MonoBehaviour
         }
 
         // Enlazar los nodos en un bucle
-        for (int i = 0; i < nodos.Length - 1; i++)
+        for (int i = 0; i < nodos.Length; i++)
         {
-            nodos[i].siguienteNodo = nodos[i + 1];
+            int siguienteIndice = (i + 1) % nodos.Length;
+            nodos[i].siguienteNodo = nodos[siguienteIndice];
         }
-
-        // Establecer el bucle, conectando el último nodo al primer nodo
-        nodos[nodos.Length - 1].siguienteNodo = nodos[0];
 
         // Establecer el primer nodo
         primerNodo = nodos[0];
