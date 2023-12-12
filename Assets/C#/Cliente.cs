@@ -60,6 +60,7 @@ public class Cliente : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }
 
 
