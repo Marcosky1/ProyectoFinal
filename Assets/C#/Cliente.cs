@@ -1,21 +1,65 @@
 using UnityEngine;
-using System;
-using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Cliente : MonoBehaviour
 {
-    public float paciencia;
+    public Button btnHamburguesa;
+    public Button btnPapas;
+    public Button btnPollo;
+    public Button btnGaseosa;
 
-    // Definir evento para perder paciencia
-    public event Action OnPacienciaAgotada;
+    public Text tiempoRestanteText;
+    public Text estrellasText;
 
-    void VerificarPaciencia()
+    private float tiempoPaciencia = 10f;
+    private int estrellas = 5;
+    private int puntos = 50;
+
+    private bool clienteSatisfecho = false;
+
+    void Start()
     {
-        // Lógica para verificar la paciencia del cliente
-        if (paciencia <= 0)
+        btnHamburguesa.onClick.AddListener(() => SeleccionarComida("Hamburguesa"));
+        btnPapas.onClick.AddListener(() => SeleccionarComida("Papas"));
+        btnPollo.onClick.AddListener(() => SeleccionarComida("Pollo"));
+        btnGaseosa.onClick.AddListener(() => SeleccionarComida("Gaseosa"));
+
+        InvokeRepeating("ActualizarTiempoPaciencia", 0f, 1f);
+    }
+
+    void SeleccionarComida(string comida)
+    {
+        if (!clienteSatisfecho)
         {
-            OnPacienciaAgotada?.Invoke();
+            if (comida == "Hamburguesa" || comida == "Papas" || comida == "Pollo" || comida == "Gaseosa")
+            {
+                Debug.Log("Cliente pidió: " + comida);
+                puntos -= 2;
+                if (puntos <= 0)
+                {
+                    clienteSatisfecho = true;
+                    Debug.Log("Cliente satisfecho!");
+                    CancelInvoke("ActualizarTiempoPaciencia");
+                    // Aquí podrías agregar lógica adicional cuando el cliente está satisfecho.
+                }
+            }
+        }
+    }
+
+    void ActualizarTiempoPaciencia()
+    {
+        tiempoPaciencia -= 1f;
+        tiempoRestanteText.text = "Tiempo Restante: " + tiempoPaciencia.ToString("F0") + "s";
+
+        if (tiempoPaciencia <= 0f)
+        {
+            clienteSatisfecho = true;
+            Debug.Log("Cliente insatisfecho. Se ha agotado el tiempo.");
+            estrellas--;
+            estrellasText.text = "Estrellas: " + estrellas;
+            Destroy(gameObject);
         }
     }
 }
+
 
