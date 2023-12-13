@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.004067328, g: 0.00022238269, b: 0.00000005613946, a: 1}
+  m_IndirectSpecularColor: {r: 0.0040673385, g: 0.00022238327, b: 0.00000005613946, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -230,6 +230,7 @@ MonoBehaviour:
   btnGaseosa: {fileID: 1834782379}
   tiempoRestanteText: {fileID: 1478981635}
   estrellasText: {fileID: 10001938}
+  gameController: {fileID: 1037645444}
 --- !u!1 &10001936
 GameObject:
   m_ObjectHideFlags: 0
@@ -7453,6 +7454,8 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: 944cff9896b0f6b448b739d77bf55d84, type: 2}
   uiManager: {fileID: 1621629962}
   estrellasImage: {fileID: 2002594862}
+  puntosText: {fileID: 983290631}
+  tiempoActualizacionPuntos: 1
 --- !u!114 &1037645445
 MonoBehaviour:
   m_ObjectHideFlags: 0

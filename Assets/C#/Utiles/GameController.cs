@@ -5,11 +5,19 @@ public class GameController : MonoBehaviour
 {
     public GameData gameData;
     public UIManager uiManager;
-    public Image estrellasImage; 
+    public Image estrellasImage;
+    public Text puntosText;
+    public float tiempoActualizacionPuntos = 1f;
+    private float tiempoTranscurridoPuntos = 0f;
 
     void Update()
     {
-        
+        tiempoTranscurridoPuntos += Time.deltaTime;
+        if (tiempoTranscurridoPuntos >= tiempoActualizacionPuntos)
+        {
+            ActualizarPuntos();
+            tiempoTranscurridoPuntos = 0f;
+        }
     }
 
     bool PerdioJuego()
@@ -22,12 +30,25 @@ public class GameController : MonoBehaviour
         return false;
     }
 
-    bool LlegoALaRondaFinal()
+    void ActualizarPuntos()
     {
-        return gameData.rondaActual >= 20;
+        puntosText.text = "Dinero: s/ " + gameData.puntos;
     }
 
-    void ActualizarEstrellas()
+    public void SumarPuntos(int cantidad)
+    {
+        gameData.puntos += cantidad;
+
+        puntosText.text = "1Dinero: s/ " + gameData.puntos;
+
+    }
+
+    bool LlegoALaRondaFinal()
+    {
+        return gameData.rondaActual >= 5;
+    }
+
+    public void ActualizarEstrellas()
     {
         // Restar 0.2 al fillAmount
         estrellasImage.fillAmount -= 0.2f;
