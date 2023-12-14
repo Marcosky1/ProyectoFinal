@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 
 public class Cliente : MonoBehaviour
@@ -24,12 +25,13 @@ public class Cliente : MonoBehaviour
 
     void Start()
     {
-        int cantidadPedido = Random.Range(2, 4);
+        System.Random random = new System.Random();
+        int cantidadPedido = random.Next(2, 4);
         ordenComida = new string[cantidadPedido];
 
         for (int i = 0; i < cantidadPedido; i++)
         {
-            ordenComida[i] = tiposComida[Random.Range(0, tiposComida.Length)];
+            ordenComida[i] = tiposComida[random.Next(0, tiposComida.Length)];
             Debug.Log("Cliente pidió: " + ordenComida[i]);
         }
 
@@ -64,37 +66,30 @@ public class Cliente : MonoBehaviour
 
     void SeleccionarComida(string comida)
     {
-        if (!clienteSatisfecho)
+        if (!clienteSatisfecho && ordenComida.Length > 0 && comida == ordenComida[0])
         {
-            if (ordenComida.Length > 0 && comida == ordenComida[0])
+            Debug.Log("Cliente seleccionó: " + comida);
+
+            if (puntos <= 0 && ordenComida.Length > 0)
             {
-                Debug.Log("Cliente seleccionó: " + comida);
-                // Restar puntos solo si hay elementos en el pedido
-                if (puntos <= 0 && ordenComida.Length > 0)
-                {
-                    puntos += 2;
-                    // Llamamos a la función en el GameController para sumar los puntos
-                    gameController.SumarPuntos(2);
-                }
+                puntos += 2;
+                gameController.SumarPuntos(2);
+            }
 
-                // Eliminar la comida seleccionada del pedido
-                if (ordenComida.Length > 1)
-                {
-                    string[] newOrdenComida = new string[ordenComida.Length - 1];
-                    System.Array.Copy(ordenComida, 1, newOrdenComida, 0, newOrdenComida.Length);
-                    ordenComida = newOrdenComida;
-                }
-                else
-                {
-                    ordenComida = new string[0];
-                }
+            if (ordenComida.Length > 1)
+            {
+                Array.Resize(ref ordenComida, ordenComida.Length - 1);
+            }
+            else
+            {
+                ordenComida = new string[0];
+            }
 
-                if (ordenComida.Length == 0)
-                {
-                    clienteSatisfecho = true;
-                    Debug.Log("Cliente satisfecho!");
-                    CancelInvoke("ActualizarTiempoPaciencia");
-                }
+            if (ordenComida.Length == 0)
+            {
+                clienteSatisfecho = true;
+                Debug.Log("Cliente satisfecho!");
+                CancelInvoke("ActualizarTiempoPaciencia");
             }
         }
     }

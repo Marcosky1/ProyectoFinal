@@ -8,6 +8,12 @@ public class GameData : ScriptableObject
     public int puntos;
     public int puntosMaximos;
     public bool victoria;
-    public int rondaActual { get; set; }
+
+    public int rondaActual = 1;
+
+    public void AumentarRonda()
+    {
+        rondaActual++;
+    }
 }
 
