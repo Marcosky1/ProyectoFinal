@@ -447,7 +447,6 @@ GameObject:
   - component: {fileID: 4814805667218735319}
   - component: {fileID: 7449669062879067146}
   - component: {fileID: 2606494659270489718}
-  - component: {fileID: -5502371097780609042}
   - component: {fileID: 1722804085237084258}
   - component: {fileID: 5423561256783685026}
   m_Layer: 0
@@ -512,7 +511,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949390884171211575}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a1a2cf15ea4d604fb62c18fe22bf1d6, type: 3}
   m_Name: 
@@ -521,25 +520,6 @@ MonoBehaviour:
   velocidad: 5
   aceleracion: 2
   smoothTime: 0.3
---- !u!114 &-5502371097780609042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949390884171211575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c770e4b7ae4bf8946919af1b9adbb87a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  btnHamburguesa: {fileID: 0}
-  btnPapas: {fileID: 0}
-  btnPollo: {fileID: 0}
-  btnGaseosa: {fileID: 0}
-  tiempoRestanteText: {fileID: 0}
-  estrellasText: {fileID: 0}
-  gameController: {fileID: 0}
 --- !u!65 &1722804085237084258
 BoxCollider:
   m_ObjectHideFlags: 0

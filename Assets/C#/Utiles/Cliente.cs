@@ -4,6 +4,12 @@ using UnityEngine.UI;
 
 public class Cliente : MonoBehaviour
 {
+    public delegate void ClienteAtendidoEventHandler(bool esPreferencial);
+    public static event ClienteAtendidoEventHandler OnClienteAtendido;
+
+    public delegate void TiempoAgotadoEventHandler(bool esPreferencial);
+    public static event TiempoAgotadoEventHandler OnTiempoAgotado;
+
     public Button btnHamburguesa;
     public Button btnPapas;
     public Button btnPollo;
@@ -19,6 +25,8 @@ public class Cliente : MonoBehaviour
     private int puntos = 50;
 
     private bool clienteSatisfecho = false;
+    private bool clienteActivo = false;
+    private bool esPreferencial;
 
     private string[] tiposComida = { "Hamburguesa", "Papas", "Pollo", "Gaseosa" };
     private string[] ordenComida;
@@ -35,13 +43,32 @@ public class Cliente : MonoBehaviour
             Debug.Log("Cliente pidió: " + ordenComida[i]);
         }
 
-        // Add listeners using regular methods
         btnHamburguesa.onClick.AddListener(SeleccionarHamburguesa);
         btnPapas.onClick.AddListener(SeleccionarPapas);
         btnPollo.onClick.AddListener(SeleccionarPollo);
         btnGaseosa.onClick.AddListener(SeleccionarGaseosa);
 
         InvokeRepeating("ActualizarTiempoPaciencia", 0f, 1f);
+    }
+
+    void Update()
+    {
+        if (clienteActivo && !clienteSatisfecho)
+        {
+            tiempoPaciencia -= Time.deltaTime;
+            tiempoRestanteText.text = "Tiempo Restante: " + tiempoPaciencia.ToString("F0") + "s";
+
+            if (tiempoPaciencia <= 0f)
+            {
+                clienteSatisfecho = true;
+                Debug.Log("Cliente insatisfecho. Se ha agotado el tiempo.");
+                estrellas--;
+
+                OnTiempoAgotado?.Invoke(esPreferencial);
+
+                Destroy(gameObject);
+            }
+        }
     }
 
     void SeleccionarHamburguesa()
@@ -89,7 +116,11 @@ public class Cliente : MonoBehaviour
             {
                 clienteSatisfecho = true;
                 Debug.Log("Cliente satisfecho!");
+
+                OnClienteAtendido?.Invoke(esPreferencial);
                 CancelInvoke("ActualizarTiempoPaciencia");
+
+                Destroy(gameObject);
             }
         }
     }
@@ -105,12 +136,15 @@ public class Cliente : MonoBehaviour
             clienteSatisfecho = true;
             Debug.Log("Cliente insatisfecho. Se ha agotado el tiempo.");
             estrellas--;
-            estrellasText.text = "Estrellas: " + estrellas;
 
-            // Llamar al método en el GameController para actualizar estrellas
-            gameController.ActualizarEstrellas();
+            OnTiempoAgotado?.Invoke(esPreferencial);
 
             Destroy(gameObject);
         }
+    }
+
+    public void ActivarCliente()
+    {
+        clienteActivo = true;
     }
 }

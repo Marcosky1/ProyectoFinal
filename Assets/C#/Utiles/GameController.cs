@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public float tiempoActualizacionPuntos = 1f;
     private float tiempoTranscurridoPuntos = 0f;
 
+
     void Update()
     {
         tiempoTranscurridoPuntos += Time.deltaTime;
@@ -50,13 +51,47 @@ public class GameController : MonoBehaviour
 
     public void ActualizarEstrellas()
     {
-        // Restar 0.2 al fillAmount
-        estrellasImage.fillAmount -= 0.2f;
-
-        // Verificar si el fillAmount llego a cero
         if (estrellasImage.fillAmount <= 0)
         {
             uiManager.MostrarDerrota();
+        }
+    }
+
+    void OnEnable()
+    {
+        Cliente.OnClienteAtendido += ClienteAtendido;
+        Cliente.OnTiempoAgotado += TiempoAgotado;
+    }
+
+    void OnDisable()
+    {
+        Cliente.OnClienteAtendido -= ClienteAtendido;
+        Cliente.OnTiempoAgotado -= TiempoAgotado;
+    }
+
+    void ClienteAtendido(bool esPreferencial)
+    {
+        if (esPreferencial)
+        {
+            gameData.puntos += 2;
+            estrellasImage.fillAmount += 0.4f;
+        }
+        else
+        {
+            gameData.puntos++;
+            estrellasImage.fillAmount -= 0.2f; 
+        }
+    }
+
+    void TiempoAgotado(bool esPreferencial)
+    {
+        if (esPreferencial)
+        {
+            estrellasImage.fillAmount -= 0.2f;
+        }
+        else
+        {
+            estrellasImage.fillAmount -= 0.2f; 
         }
     }
 }
