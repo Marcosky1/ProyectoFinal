@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Nodos
+  - gaseosa
+  - Hamburguesa
+  - papas
+  - pollo
+  - tr
   layers:
   - Default
   - TransparentFX

@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 210089155}
   m_Layer: 5
   m_Name: papasFritas
-  m_TagString: Untagged
+  m_TagString: papas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6248,57 +6248,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589263125}
   m_CullTransparentMesh: 1
---- !u!1 &617398444
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 617398445}
-  - component: {fileID: 617398446}
-  m_Layer: 0
-  m_Name: ClienteController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &617398445
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617398444}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -262.82526, y: 195.34735, z: -487.91678}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1037645443}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &617398446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617398444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c770e4b7ae4bf8946919af1b9adbb87a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  btnHamburguesa: {fileID: 1736637659}
-  btnPapas: {fileID: 210089155}
-  btnPollo: {fileID: 1606939197}
-  btnGaseosa: {fileID: 1834782379}
-  tiempoRestanteText: {fileID: 1478981635}
-  estrellasText: {fileID: 10001938}
-  gameController: {fileID: 1037645444}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -7434,7 +7383,7 @@ GameObject:
   - component: {fileID: 1037645445}
   m_Layer: 0
   m_Name: PlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7457,7 +7406,6 @@ Transform:
   - {fileID: 1625107684}
   - {fileID: 283929350}
   - {fileID: 1213863333}
-  - {fileID: 617398445}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1037645444
@@ -13381,7 +13329,7 @@ GameObject:
   - component: {fileID: 1478981635}
   m_Layer: 5
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: tr
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13632,7 +13580,7 @@ GameObject:
   - component: {fileID: 1606939197}
   m_Layer: 5
   m_Name: PolloFrito
-  m_TagString: Untagged
+  m_TagString: pollo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13939,7 +13887,8 @@ MonoBehaviour:
   - {fileID: 260463671}
   - {fileID: 108397502}
   - {fileID: 774056908}
-  gameData: {fileID: 0}
+  gameData: {fileID: 11400000, guid: 944cff9896b0f6b448b739d77bf55d84, type: 2}
+  cantidad: 1
 --- !u!1 &1621629961
 GameObject:
   m_ObjectHideFlags: 0
@@ -19124,7 +19073,7 @@ GameObject:
   - component: {fileID: 1736637659}
   m_Layer: 5
   m_Name: Hamburguesa
-  m_TagString: Untagged
+  m_TagString: Hamburguesa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19384,7 +19333,7 @@ GameObject:
   - component: {fileID: 1834782379}
   m_Layer: 5
   m_Name: gaseosa
-  m_TagString: Untagged
+  m_TagString: gaseosa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

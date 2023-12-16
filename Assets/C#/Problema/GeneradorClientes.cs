@@ -7,6 +7,7 @@ public class GeneradorClientes : FilaPrioridad
     public GameObject clientePreferencialPrefab;
     public GameObject[] nodos;
     public GameData gameData;
+    public int cantidad;
 
     private float ProbabilidadClientePreferencial = 0.2f;
     private bool generandoClientes = false;
@@ -14,7 +15,7 @@ public class GeneradorClientes : FilaPrioridad
     void Start()
     {
         // Genera 4 clientes iniciales
-        GenerarClientes(4);
+        GenerarClientes(cantidad);
     }
 
     private void Update()
