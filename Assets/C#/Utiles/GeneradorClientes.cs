@@ -44,8 +44,6 @@ public class GeneradorClientes : FilaPrioridad
             Cliente nuevoClienteScript = nuevoClienteObject.GetComponent<Cliente>();
             if (nuevoClienteScript != null)
             {
-                nuevoClienteScript.ActivarCliente();
-
                 // Agrega el cliente a la fila
                 AgregarClienteEnNodo(nuevoClienteObject);
             }
