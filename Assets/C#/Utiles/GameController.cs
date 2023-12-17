@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
             ActualizarPuntos();
             tiempoTranscurridoPuntos = 0f;
         }
+        ActualizarEstrellas();
     }
 
     bool PerdioJuego()

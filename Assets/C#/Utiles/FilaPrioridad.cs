@@ -23,7 +23,7 @@ public class FilaPrioridad : MonoBehaviour
     {
         Nodo actual = cabeza;
         int index = 0;
-        while (actual != null)
+        while (actual != null)  
         {
             float yPos = index * 2f;
             actual.ClientePrefab.position = new Vector3(0f, yPos, 0f);

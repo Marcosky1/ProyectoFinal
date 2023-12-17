@@ -11,6 +11,7 @@ TagManager:
   - pollo
   - tr
   - cliente
+  - ClientePreference
   layers:
   - Default
   - TransparentFX

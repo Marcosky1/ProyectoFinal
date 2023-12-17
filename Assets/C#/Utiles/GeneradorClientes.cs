@@ -9,20 +9,19 @@ public class GeneradorClientes : FilaPrioridad
     public GameData gameData;
     public int cantidad;
 
-    private int clienteActual = 0;
     private float ProbabilidadClientePreferencial = 0.2f;
-    private bool generandoClientes = false;
 
     void Start()
     {
-        GenerarClientes(cantidad);
+        StartCoroutine(GenerarClientesPeriodicamente(2f));
     }
 
-    private void Update()
+    private IEnumerator GenerarClientesPeriodicamente(float intervalo)
     {
-        if (CantidadClientesEnFila() == 0 && !generandoClientes)
+        while (true)
         {
-            StartCoroutine(EsperarYGenerarClientes(5f, 4));
+            yield return new WaitForSeconds(intervalo);
+            GenerarClientes(1); 
         }
     }
 
@@ -30,89 +29,46 @@ public class GeneradorClientes : FilaPrioridad
     {
         for (int i = 0; i < cantidad; i++)
         {
-            GameObject nuevoClientePrefab = (Random.value < ProbabilidadClientePreferencial) ? clientePreferencialPrefab : clientePrefab;
+            int indiceNodo = nodos.Length - 1;  // Comienza en el último nodo
 
-            int indiceNodo = Random.Range(0, nodos.Length);
+            Node nodoActual = nodos[indiceNodo].GetComponent<Node>();
 
-            GameObject nuevoClienteObject = Instantiate(nuevoClientePrefab, nodos[indiceNodo].transform.position, Quaternion.identity);
-
-            Cliente nuevoClienteScript = nuevoClienteObject.GetComponent<Cliente>();
-            if (nuevoClienteScript != null)
+            // Verifica si el nodo está vacío
+            if (!nodoActual.estaLleno)
             {
-                AgregarClienteEnNodo(nuevoClienteObject);
-                if (indiceNodo == 0)
+                GameObject nuevoClientePrefab = (Random.value < ProbabilidadClientePreferencial) ? clientePreferencialPrefab : clientePrefab;
+
+                // Verifica si el nodo siguiente está lleno
+                if (nodoActual.nodoSiguiente != null && nodoActual.nodoSiguiente.estaLleno)
+                {
+                    Debug.Log("Nodo siguiente está lleno. No se puede avanzar al siguiente cliente.");
+                    return;
+                }
+
+                GameObject nuevoClienteObject = Instantiate(nuevoClientePrefab, nodos[indiceNodo].transform.position, Quaternion.identity);
+
+                Cliente nuevoClienteScript = nuevoClienteObject.GetComponent<Cliente>();
+
+                if (nuevoClienteScript != null)
                 {
                     AgregarClienteEnNodo(nuevoClienteObject);
-                    nuevoClienteScript.ActivarCliente(false);
+                    nuevoClienteScript.ActivarCliente(true);
+
+                    // Marca el nodo actual como lleno y asigna el tipo de cliente
+                    nodoActual.ClienteEntra((Random.value < ProbabilidadClientePreferencial) ? TipoCliente.VIP : TipoCliente.Normal);
+                }
+                else
+                {
+                    Destroy(nuevoClienteObject);
                 }
             }
             else
-            {              
-                Destroy(nuevoClienteObject);
-            }
-
-            if (i == 0)
             {
-                Cliente primerClienteScript = nuevoClienteObject.GetComponent<Cliente>();
-                if (primerClienteScript != null)
-                {
-                    primerClienteScript.ActivarCliente(true);
-                }
-            }
-        }
-        ActivarSiguienteCliente();
-    }
-
-    public void ActivarSiguienteCliente()
-    {
-        if (cabeza != null)
-        {
-            Nodo clienteAnteriorNodo = (clienteActual > 0) ? ObtenerNodo(clienteActual - 1) : null;
-            Nodo clienteActualNodo = ObtenerNodo(clienteActual);
-
-            if (clienteAnteriorNodo != null)
-            {
-                Cliente clienteAnteriorScript = clienteAnteriorNodo.ClientePrefab.GetComponent<Cliente>();
-                if (clienteAnteriorScript != null)
-                {
-                    clienteAnteriorScript.ActivarCliente(false);
-                }
-            }
-
-            if (clienteActualNodo != null)
-            {
-                Cliente clienteActualScript = clienteActualNodo.ClientePrefab.GetComponent<Cliente>();
-                if (clienteActualScript != null)
-                {
-                    clienteActualScript.ActivarCliente(true);
-                }
-
-                clienteActual++;
+                Debug.Log("Nodo actual está lleno. Esperando...");
             }
         }
     }
 
-    private Nodo ObtenerNodo(int indice)
-    {
-        Nodo clienteActualNodo = cabeza;
-        for (int i = 0; i < indice; i++)
-        {
-            clienteActualNodo = clienteActualNodo.Siguiente;
-            if (clienteActualNodo == null)
-            {
-                return null;
-            }
-        }
-        return clienteActualNodo;
-    }
-
-    private IEnumerator EsperarYGenerarClientes(float tiempoEspera, int cantidad)
-    { 
-        generandoClientes = true;
-        yield return new WaitForSeconds(tiempoEspera);
-        GenerarClientes(cantidad);
-        generandoClientes = false;
-    }
 
     public void AgregarClienteEnNodo(GameObject cliente)
     {
@@ -121,6 +77,7 @@ public class GeneradorClientes : FilaPrioridad
         cabeza = nuevoNodo;
         ActualizarPosiciones();
     }
+
     public override void ActualizarPosiciones()
     {
         Nodo actual = cabeza;
@@ -140,5 +97,4 @@ public class GeneradorClientes : FilaPrioridad
             index++;
         }
     }
-
 }
