@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 8407836009407942556}
   m_Layer: 0
   m_Name: CityMan
-  m_TagString: Untagged
+  m_TagString: cliente
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -586,8 +586,8 @@ MonoBehaviour:
   btnPollo: {fileID: 0}
   btnGaseosa: {fileID: 0}
   tiempoRestanteText: {fileID: 0}
-  estrellasText: {fileID: 0}
   gameController: {fileID: 0}
+  ordenComida: []
 --- !u!1 &2130831510387994223
 GameObject:
   m_ObjectHideFlags: 0

@@ -76,11 +76,6 @@ public class GameController : MonoBehaviour
             gameData.puntos += 2;
             estrellasImage.fillAmount += 0.4f;
         }
-        else
-        {
-            gameData.puntos++;
-            estrellasImage.fillAmount -= 0.2f; 
-        }
     }
 
     void TiempoAgotado(bool esPreferencial)
@@ -88,10 +83,6 @@ public class GameController : MonoBehaviour
         if (esPreferencial)
         {
             estrellasImage.fillAmount -= 0.2f;
-        }
-        else
-        {
-            estrellasImage.fillAmount -= 0.2f; 
         }
     }
 }

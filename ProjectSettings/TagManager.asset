@@ -10,6 +10,7 @@ TagManager:
   - papas
   - pollo
   - tr
+  - cliente
   layers:
   - Default
   - TransparentFX

@@ -157,11 +157,6 @@ public class Cliente : MonoBehaviour
         }
     }
 
-    public void ActivarCliente()
-    {
-        clienteActivo = true;
-    }
-
     public void AsignarGameObjects()
     {
         if (hamrburguesa != null)
@@ -205,5 +200,9 @@ public class Cliente : MonoBehaviour
         {
             btnGaseosa.onClick.AddListener(SeleccionarGaseosa);
         }
+    }
+    public void ActivarCliente(bool activar)
+    {
+        gameObject.SetActive(activar);
     }
 }

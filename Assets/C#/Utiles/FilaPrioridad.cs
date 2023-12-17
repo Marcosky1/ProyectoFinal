@@ -19,6 +19,19 @@ public class FilaPrioridad : MonoBehaviour
 {
     protected Nodo cabeza;
 
+    public virtual void ActualizarPosiciones()
+    {
+        Nodo actual = cabeza;
+        int index = 0;
+        while (actual != null)
+        {
+            float yPos = index * 2f;
+            actual.ClientePrefab.position = new Vector3(0f, yPos, 0f);
+            actual = actual.Siguiente;
+            index++;
+        }
+    }
+
     public void AgregarClienteEnNodo(Transform clientePrefab)
     {
         Nodo nuevoNodo = new Nodo(clientePrefab);
@@ -35,19 +48,6 @@ public class FilaPrioridad : MonoBehaviour
             cabeza = cabeza.Siguiente;
             GameObject.Destroy(cliente.gameObject);
             ActualizarPosiciones();
-        }
-    }
-
-    protected virtual void ActualizarPosiciones()
-    {
-        Nodo actual = cabeza;
-        int index = 0;
-        while (actual != null)
-        {
-            float yPos = index * 2f;
-            actual.ClientePrefab.position = new Vector3(0f, yPos, 0f);
-            actual = actual.Siguiente;
-            index++;
         }
     }
 
