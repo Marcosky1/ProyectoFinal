@@ -16,6 +16,7 @@ public class Cliente : MonoBehaviour
     public Button btnGaseosa;
     public Text tiempoRestanteText;
     public GameController gameController;
+    public Node NodoDestino;
 
     private float tiempoPaciencia = 20f;
     private int puntos = 50;

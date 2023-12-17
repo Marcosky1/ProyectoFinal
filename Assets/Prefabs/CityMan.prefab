@@ -536,7 +536,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -587,6 +587,7 @@ MonoBehaviour:
   btnGaseosa: {fileID: 0}
   tiempoRestanteText: {fileID: 0}
   gameController: {fileID: 0}
+  NodoDestino: {fileID: 0}
   ordenComida: []
 --- !u!1 &2130831510387994223
 GameObject:

@@ -6,6 +6,10 @@ public class ControladorParticulas : MonoBehaviour
     public ParticleSystem particulasParrilla;
     public ParticleSystem particulasFreidora;
     public ParticleSystem particulasOtro;
+    public AudioSource audioSourceF;
+    public AudioSource audioSourcePA;
+    public AudioSource audioSourcePO;
+    
 
     private void Start()
     {
@@ -14,28 +18,30 @@ public class ControladorParticulas : MonoBehaviour
 
     public void OnParrillaAction(InputAction.CallbackContext ctx)
     {
-        ToggleParticulas(particulasParrilla);
+        ToggleParticulas(particulasParrilla, audioSourceF);
     }
 
     public void OnFreidoraAction(InputAction.CallbackContext ctx)
     {
-        ToggleParticulas(particulasFreidora);
+        ToggleParticulas(particulasFreidora, audioSourcePA);
     }
 
     public void OnOtroAction(InputAction.CallbackContext ctx)
     {
-        ToggleParticulas(particulasOtro);
+        ToggleParticulas(particulasOtro, audioSourcePO);
     }
 
-    private void ToggleParticulas(ParticleSystem particulas)
+    private void ToggleParticulas(ParticleSystem particulas, AudioSource audio)
     {
         if (particulas.isPlaying)
         {
             particulas.Stop();
+            audio.Pause();
         }
         else
         {
             particulas.Play();
+            audio.Play();
         }
     }
 }
