@@ -40,17 +40,6 @@ public class FilaPrioridad : MonoBehaviour
         ActualizarPosiciones();
     }
 
-    public void EliminarCliente()
-    {
-        if (cabeza != null)
-        {
-            Transform cliente = cabeza.ClientePrefab;
-            cabeza = cabeza.Siguiente;
-            GameObject.Destroy(cliente.gameObject);
-            ActualizarPosiciones();
-        }
-    }
-
     public int CantidadClientesEnFila()
     {
         int contador = 0;

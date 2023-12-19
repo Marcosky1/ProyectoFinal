@@ -12,6 +12,7 @@ TagManager:
   - tr
   - cliente
   - ClientePreference
+  - Carrito
   layers:
   - Default
   - TransparentFX

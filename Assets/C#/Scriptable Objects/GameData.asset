@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   puntos: 0
-  puntosMaximos: 0
-  victoria: 0
+  puntosMaximos: 1
+  rondaActual: 1
+  cabeza:
+    puntos: 0
+    ronda: 1

@@ -7,47 +7,30 @@ public class GameController : MonoBehaviour
     public UIManager uiManager;
     public Image estrellasImage;
     public Text puntosText;
-    public float tiempoActualizacionPuntos = 1f;
-    private float tiempoTranscurridoPuntos = 0f;
-
 
     void Update()
     {
-        tiempoTranscurridoPuntos += Time.deltaTime;
-        if (tiempoTranscurridoPuntos >= tiempoActualizacionPuntos)
-        {
-            ActualizarPuntos();
-            tiempoTranscurridoPuntos = 0f;
-        }
         ActualizarEstrellas();
-    }
-
-    bool PerdioJuego()
-    {
-        if (gameData.puntos <= 0 || LlegoALaRondaFinal())
-        {
-            return true;
-        }
-
-        return false;
+        Ganar();
     }
 
     void ActualizarPuntos()
     {
-        puntosText.text = "Dinero: s/ " + gameData.puntos;
+        puntosText.text = "Dinero: s/" + gameData.puntos;
     }
 
-    public void SumarPuntos(int cantidad)
+    public void ClienteSatisfecho(int puntosCliente)
     {
-        gameData.puntos += cantidad;
-
-        puntosText.text = "1Dinero: s/ " + gameData.puntos;
-
+        gameData.AumentarPuntos(puntosCliente);
+        ActualizarPuntos();
     }
 
-    bool LlegoALaRondaFinal()
+    public void Ganar()
     {
-        return gameData.rondaActual >= 5;
+        if(gameData.rondaActual == 5)
+        {
+            uiManager.MostrarVictoria();
+        }
     }
 
     public void ActualizarEstrellas()
@@ -79,9 +62,13 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void TiempoAgotado(bool esPreferencial)
+    public void TiempoAgotado(bool esPreferencial)
     {
         if (esPreferencial)
+        {
+            estrellasImage.fillAmount -= 0.2f;
+        }
+        else
         {
             estrellasImage.fillAmount -= 0.2f;
         }

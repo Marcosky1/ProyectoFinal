@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Cliente : MonoBehaviour
 {
@@ -14,17 +15,18 @@ public class Cliente : MonoBehaviour
     public Button btnPapas;
     public Button btnPollo;
     public Button btnGaseosa;
-    public Text tiempoRestanteText;
     public GameController gameController;
-    public Node NodoDestino;
 
-    private float tiempoPaciencia = 20f;
-    private int puntos = 50;
+    public bool EsUltimoNodo { get; set; } = false;
+    public Node NodoDestino { get; set; }
+
+    private float tiempoPaciencia = 15f;
+    private int puntos = 15;
 
     private bool clienteSatisfecho = false;
     private bool clienteActivo = false;
     private bool esPreferencial;
-
+    private IEnumerator tiempoPacienciaCoroutine;
     private string[] tiposComida = { "Hamburguesa", "Papas", "Pollo", "Gaseosa" };
     public string[] ordenComida;
 
@@ -38,8 +40,6 @@ public class Cliente : MonoBehaviour
 
     void Start()
     {
-
-
         System.Random random = new System.Random();
         int cantidadPedido = random.Next(2, 4);
         ordenComida = new string[cantidadPedido];
@@ -49,7 +49,8 @@ public class Cliente : MonoBehaviour
             ordenComida[i] = tiposComida[random.Next(0, tiposComida.Length)];
             Debug.Log("Cliente pidió: " + ordenComida[i]);
         }
-        InvokeRepeating("ActualizarTiempoPaciencia", 0f, 1f);
+        tiempoPacienciaCoroutine = ActualizarTiempoPaciencia();
+        StartCoroutine(tiempoPacienciaCoroutine);
     }
 
     void Update()
@@ -59,13 +60,50 @@ public class Cliente : MonoBehaviour
         pollos = GameObject.FindGameObjectWithTag("pollo");
         gaseosas = GameObject.FindGameObjectWithTag("gaseosa");
         _gamecontroller = GameObject.FindGameObjectWithTag("Player");
-        _tiempoRestante = GameObject.FindGameObjectWithTag("tr");
 
         AsignarGameObjects();
+
         if (clienteActivo && !clienteSatisfecho)
         {
             tiempoPaciencia -= Time.deltaTime;
-            tiempoRestanteText.text = "Tiempo Restante: " + tiempoPaciencia.ToString("F0") + "s";
+
+            if (tiempoPaciencia <= 0f)
+            {
+                clienteSatisfecho = true;
+                Debug.Log("Cliente insatisfecho. Se ha agotado el tiempo.");
+
+                StartCoroutine(InvocarEventoTiempoAgotado(esPreferencial));
+
+                gameController.TiempoAgotado(esPreferencial);
+
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (tiempoPacienciaCoroutine != null)
+        {
+            StopCoroutine(tiempoPacienciaCoroutine);
+        }
+        if (NodoDestino != null)
+        {
+            NodoDestino.estaOcupado = false;
+        }
+    }
+
+    IEnumerator InvocarEventoTiempoAgotado(bool esPreferencial)
+    {
+        yield return null;
+        OnTiempoAgotado?.Invoke(esPreferencial);
+    }
+
+    IEnumerator ActualizarTiempoPaciencia()
+    {
+        while (tiempoPaciencia > 0f && !clienteSatisfecho)
+        {
+            tiempoPaciencia -= 1f;
 
             if (tiempoPaciencia <= 0f)
             {
@@ -76,6 +114,8 @@ public class Cliente : MonoBehaviour
 
                 Destroy(gameObject);
             }
+
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -99,18 +139,13 @@ public class Cliente : MonoBehaviour
         SeleccionarComida("Gaseosa");
     }
 
-    void SeleccionarComida(string comida)
+    public void SeleccionarComida(string comida)
     {
         if (!clienteSatisfecho && ordenComida.Length > 0)
-        {           
+        {
 
             if (comida == ordenComida[0])
             {
-                if (puntos <= 0 && ordenComida.Length > 0)
-                {
-                    puntos += 2;
-                    gameController.SumarPuntos(2);
-                }
 
                 if (ordenComida.Length > 1)
                 {
@@ -135,27 +170,17 @@ public class Cliente : MonoBehaviour
                     OnClienteAtendido?.Invoke(esPreferencial);
                     CancelInvoke("ActualizarTiempoPaciencia");
 
+                    gameController.ClienteSatisfecho(puntos);
+
                     Destroy(gameObject);
                 }
             }
         }
     }
 
-
-    void ActualizarTiempoPaciencia()
+    public bool EsClienteSatisfecho()
     {
-        tiempoPaciencia -= 1f;
-        tiempoRestanteText.text = "Tiempo Restante: " + tiempoPaciencia.ToString("F0") + "s";
-
-        if (tiempoPaciencia <= 0f)
-        {
-            clienteSatisfecho = true;
-            Debug.Log("Cliente insatisfecho. Se ha agotado el tiempo.");
-
-            OnTiempoAgotado?.Invoke(esPreferencial);
-
-            Destroy(gameObject);
-        }
+        return clienteSatisfecho;
     }
 
     public void AsignarGameObjects()
@@ -179,10 +204,6 @@ public class Cliente : MonoBehaviour
         if (_gamecontroller != null)
         {
             gameController = _gamecontroller.GetComponent<GameController>();
-        }
-        if (_tiempoRestante != null)
-        {
-            tiempoRestanteText = _tiempoRestante.GetComponent<Text>();
         }
 
         if (btnHamburguesa != null)

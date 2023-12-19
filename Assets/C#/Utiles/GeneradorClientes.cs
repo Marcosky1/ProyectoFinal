@@ -16,6 +16,7 @@ public class GeneradorClientes : FilaPrioridad
         StartCoroutine(GenerarClientesPeriodicamente(2f));
     }
 
+
     private IEnumerator GenerarClientesPeriodicamente(float intervalo)
     {
         for (int i = 0; i < cantidad; i++)
@@ -23,7 +24,6 @@ public class GeneradorClientes : FilaPrioridad
             yield return new WaitForSeconds(intervalo);
             GenerarClientes(1);
         }
-            
     }
 
     private void GenerarClientes(int cantidad)
@@ -57,7 +57,9 @@ public class GeneradorClientes : FilaPrioridad
 
             if (nuevoClienteScript != null)
             {
-                nuevoClienteScript.NodoDestino = nodos[indiceNodo].GetComponent<Node>();
+                nuevoClienteScript.EsUltimoNodo = nodos[indiceNodo].GetComponent<Node>();
+
+                nuevoClienteScript.EsUltimoNodo = true;
 
                 AgregarClienteEnNodo(nuevoClienteObject);
                 nuevoClienteScript.ActivarCliente(true);
@@ -78,6 +80,23 @@ public class GeneradorClientes : FilaPrioridad
         nuevoNodo.Siguiente = cabeza;
         cabeza = nuevoNodo;
         ActualizarPosiciones();
+    }
+
+    public void EliminarCliente()
+    {
+        if (cabeza != null)
+        {
+            Destroy(cabeza.ClientePrefab.gameObject);
+            cabeza = cabeza.Siguiente;
+
+            // Mueve a los clientes hacia adelante
+            Nodo nodoActual = cabeza;
+            while (nodoActual != null)
+            {
+                nodoActual.ClientePrefab.position = nodoActual.Siguiente?.ClientePrefab.position ?? Vector3.zero;
+                nodoActual = nodoActual.Siguiente;
+            }
+        }
     }
 
     public override void ActualizarPosiciones()
