@@ -9,7 +9,7 @@ public class GeneradorClientes : FilaPrioridad
     public GameData gameData;
     public int cantidad;
 
-    private float ProbabilidadClientePreferencial = 0.2f;
+    private float ProbabilidadClientePreferencial = 0.5f;
 
     void Start()
     {

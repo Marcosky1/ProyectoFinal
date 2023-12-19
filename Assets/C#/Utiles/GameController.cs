@@ -27,7 +27,11 @@ public class GameController : MonoBehaviour
 
     public void Ganar()
     {
-        if(gameData.rondaActual == 5)
+        if (estrellasImage.fillAmount <= 0)
+        {
+            uiManager.MostrarDerrota();
+        }
+        if (gameData.rondaActual == 5)
         {
             uiManager.MostrarVictoria();
         }

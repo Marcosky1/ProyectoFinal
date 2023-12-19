@@ -3,12 +3,12 @@ using UnityEngine.UI;
 
 public class TableroPuntajes : MonoBehaviour
 {
+    public GameData gameData;
     public Text[] textosPuntajes; 
 
     public void MostrarPuntajesOrdenados()
     {
         // acceso a la instancia de GameData
-        GameData gameData = FindObjectOfType<GameData>();
 
         if (gameData != null)
         {

@@ -11,7 +11,9 @@ public class InicioEscena : MonoBehaviour
     {
         ActualizarTextoUI();
 
-        ReiniciarDatos();       
+        ReiniciarDatos();
+
+        gameData.GuardarNodoEnHistorial();
     }
 
 
@@ -19,12 +21,12 @@ public class InicioEscena : MonoBehaviour
     {
         if (textoPuntosUI != null)
         {
-            textoPuntosUI.text = "Rondas superadas : " + gameData.puntos;
+            textoPuntosUI.text = "Dinero recaudado : s/" + gameData.puntos;
         }
 
         if (textoRondasUI != null)
         {
-            textoRondasUI.text = "Dinero recaudado : s/" + gameData.rondaActual;
+            textoRondasUI.text = "Rondas superadas : " + gameData.rondaActual;
         }
     }
 
