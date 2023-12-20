@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puntos: 0
   puntosMaximos: 0
-  rondaActual: 2
+  rondaActual: 1
   cabeza:
     puntos: 0
     ronda: 1

@@ -29,6 +29,10 @@ public class Cliente : MonoBehaviour
     private IEnumerator tiempoPacienciaCoroutine;
     private string[] tiposComida = { "Hamburguesa", "Papas", "Pollo", "Gaseosa" };
     public string[] ordenComida;
+    public Image imgHamburguesa;
+    public Image imgPapas;
+    public Image imgPollo;
+    public Image imgGaseosa;
 
     private GameObject hamrburguesa;
     private GameObject papas;
@@ -36,7 +40,11 @@ public class Cliente : MonoBehaviour
     private GameObject gaseosas;
     private GameObject _gamecontroller;
     private GameObject _tiempoRestante;
-
+    private GameObject _textoPedido;
+    private GameObject _imgHamburguesa;
+    private GameObject _imgPapas;
+    private GameObject _imgPollo;
+    private GameObject _imgGaseosa;
 
     void Start()
     {
@@ -49,8 +57,24 @@ public class Cliente : MonoBehaviour
             ordenComida[i] = tiposComida[random.Next(0, tiposComida.Length)];
             Debug.Log("Cliente pidió: " + ordenComida[i]);
         }
+
+        AsignarImagenes();
+
+        for (int i = 0; i < cantidadPedido; i++)
+        {
+            ActivarImagen(ordenComida[i]);
+        }
+
         tiempoPacienciaCoroutine = ActualizarTiempoPaciencia();
         StartCoroutine(tiempoPacienciaCoroutine);
+    }
+
+    void AsignarImagenes()
+    {
+        imgHamburguesa = GameObject.FindGameObjectWithTag("H")?.GetComponent<Image>();
+        imgPapas = GameObject.FindGameObjectWithTag("Pa")?.GetComponent<Image>();
+        imgPollo = GameObject.FindGameObjectWithTag("Po")?.GetComponent<Image>();
+        imgGaseosa = GameObject.FindGameObjectWithTag("G")?.GetComponent<Image>();
     }
 
     void Update()
@@ -70,7 +94,6 @@ public class Cliente : MonoBehaviour
             if (tiempoPaciencia <= 0f)
             {
                 clienteSatisfecho = true;
-                Debug.Log("Cliente insatisfecho. Se ha agotado el tiempo.");
 
                 StartCoroutine(InvocarEventoTiempoAgotado(esPreferencial));
 
@@ -108,7 +131,6 @@ public class Cliente : MonoBehaviour
             if (tiempoPaciencia <= 0f)
             {
                 clienteSatisfecho = true;
-                Debug.Log("Cliente insatisfecho. Se ha agotado el tiempo.");
 
                 OnTiempoAgotado?.Invoke(esPreferencial);
 
@@ -139,6 +161,52 @@ public class Cliente : MonoBehaviour
         SeleccionarComida("Gaseosa");
     }
 
+    void ActivarImagen(string comida)
+    {
+        // Asegurarse de que todas las imágenes estén asignadas
+        AsignarImagenes();
+
+        // Desactivar todas las imágenes primero
+        DesactivarTodasLasImagenes();
+
+        // Activar la imagen según la comida
+        switch (comida)
+        {
+            case "Hamburguesa":
+                ActivarImagenSiNoEsNull(imgHamburguesa);
+                break;
+            case "Papas":
+                ActivarImagenSiNoEsNull(imgPapas);
+                break;
+            case "Pollo":
+                ActivarImagenSiNoEsNull(imgPollo);
+                break;
+            case "Gaseosa":
+                ActivarImagenSiNoEsNull(imgGaseosa);
+                break;
+        }
+    }
+
+    void DesactivarTodasLasImagenes()
+    {
+        ActivarImagenSiNoEsNull(imgHamburguesa, false);
+        ActivarImagenSiNoEsNull(imgPapas, false);
+        ActivarImagenSiNoEsNull(imgPollo, false);
+        ActivarImagenSiNoEsNull(imgGaseosa, false);
+    }
+
+    void ActivarImagenSiNoEsNull(Image imagen, bool activar = true)
+    {
+        if (imagen != null)
+        {
+            imagen.gameObject.SetActive(activar);
+        }
+        else
+        {
+            return;
+        }
+    }
+
     public void SeleccionarComida(string comida)
     {
         if (!clienteSatisfecho && ordenComida.Length > 0)
@@ -165,7 +233,7 @@ public class Cliente : MonoBehaviour
                 if (ordenComida.Length == 0)
                 {
                     clienteSatisfecho = true;
-                    Debug.Log("Cliente satisfecho!");
+
 
                     OnClienteAtendido?.Invoke(esPreferencial);
                     CancelInvoke("ActualizarTiempoPaciencia");
@@ -222,6 +290,7 @@ public class Cliente : MonoBehaviour
         {
             btnGaseosa.onClick.AddListener(SeleccionarGaseosa);
         }
+
     }
     public void ActivarCliente(bool activar)
     {
